@@ -31,7 +31,8 @@ module ResourceControllerExtensions
       :delete                  => ResourceControllerExtensions::DeleteAction,
       :searchlogic             => ResourceControllerExtensions::SearchlogicCollection,
       :index_preload           => ResourceControllerExtensions::IndexPreload,
-      :improved_error_handling => ResourceControllerExtensions::ImprovedErrorHandling
+      :improved_error_handling => ResourceControllerExtensions::ImprovedErrorHandling,
+      :update_all              => ResourceControllerExtensions::UpdateAllAction
     }
     
     def add_extensions(*extensions)

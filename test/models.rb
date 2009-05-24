@@ -4,6 +4,7 @@ class CreateSchema < ActiveRecord::Migration
   def self.up
     create_table :projects, :force => true do |t|
       t.string :name
+      t.integer :position
       t.timestamps
     end
     create_table :tasks, :force => true do |t|

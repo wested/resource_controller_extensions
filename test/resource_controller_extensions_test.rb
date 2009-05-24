@@ -43,10 +43,17 @@ class ResourceControllerExtensionsTest < Test::Unit::TestCase
         @controller_class.instance_eval do
           add_extensions :all
         end
-        assert_includes @controller_class.included_modules, ResourceControllerExtensions::DeleteAction
-        assert_includes @controller_class.included_modules, ResourceControllerExtensions::ImprovedErrorHandling
-        assert_includes @controller_class.included_modules, ResourceControllerExtensions::IndexPreload
-        assert_includes @controller_class.included_modules, ResourceControllerExtensions::SearchlogicCollection
+        
+        [
+          ResourceControllerExtensions::DeleteAction,
+          ResourceControllerExtensions::ImprovedErrorHandling,
+          ResourceControllerExtensions::IndexPreload,
+          ResourceControllerExtensions::SearchlogicCollection,
+          ResourceControllerExtensions::SearchlogicCollection,
+          ResourceControllerExtensions::UpdateAllAction
+        ].each do |mod|
+          assert_includes @controller_class.included_modules, mod
+        end
       end
     end
     
