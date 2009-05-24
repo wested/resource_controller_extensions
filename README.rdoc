@@ -1,0 +1,13 @@
+Extensions to resource_controller for fun and profit.
+
+  class UsersController < ApplicationController
+    resource_controller
+    add_extensions :all
+    # add_extensions :delete, :searchlogic, :index_preload, :improved_error_handling, :update_all
+    
+    index.preload :current_training_application, :addresses, :certifications
+    
+    # index.per_page 10 # not yet implemented!
+  end
+  
+To run the tests, simply place this plugin in a directory that also contains resource_controller and searchlogic.
