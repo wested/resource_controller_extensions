@@ -11,3 +11,5 @@ Extensions to resource_controller for fun and profit.
   end
   
 To run the tests, simply place this plugin in a directory that also contains resource_controller and searchlogic.
+
+Currently the tests fail when run together (`rake tests`); they will need to be refactored so that they do not influence each other.
