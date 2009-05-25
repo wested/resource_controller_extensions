@@ -29,9 +29,10 @@ module ResourceControllerExtensions
   module ClassMethods
     EXTENSIONS = {
       :delete                  => ResourceControllerExtensions::DeleteAction,
-      :searchlogic             => ResourceControllerExtensions::SearchlogicCollection,
-      :index_preload           => ResourceControllerExtensions::IndexPreload,
       :improved_error_handling => ResourceControllerExtensions::ImprovedErrorHandling,
+      :index_preload           => ResourceControllerExtensions::IndexPreload,
+      :searchlogic             => ResourceControllerExtensions::SearchlogicCollection,
+      :transactional_update    => ResourceControllerExtensions::TransactionalUpdateAction,
       :update_all              => ResourceControllerExtensions::UpdateAllAction
     }
     
