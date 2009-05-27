@@ -14,6 +14,8 @@ module ResourceControllerExtensions
     end
     
     def update_all
+      instance_variable_set "@#{parent_type}", parent_object if parent?
+      
       before :update_all
       
       objects_params = params["#{object_name.pluralize}"]
@@ -23,7 +25,7 @@ module ResourceControllerExtensions
           @collection = []
           objects_params.each do |attributes|
             id = attributes.delete("id")
-            object = model.find(id)
+            object = end_of_association_chain.find(id)
             @collection.push object
             object.update_attributes!(attributes)
           end
