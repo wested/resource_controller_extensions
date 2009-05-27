@@ -8,12 +8,14 @@ module ResourceControllerExtensions
     end
     
     def self.included(base)
-      base.class_eval do
-        extend ClassMethods
+      unless base.methods.include?("resource_controller_with_extendability")
+        base.class_eval do
+          extend ClassMethods
         
-        # modifying the class object as we're aliasing a class method
-        class << self 
-          alias_method_chain :resource_controller, :extendability
+          # modifying the class object as we're aliasing a class method
+          class << self 
+            alias_method_chain :resource_controller, :extendability
+          end
         end
       end
     end
