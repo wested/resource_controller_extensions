@@ -1,15 +1,18 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 ActionController::Routing::Routes.draw do |map|
-  map.resources :projects, :collection => {:update_all => :put}
-end
-
-class ProjectsController < ActionController::Base
-  resource_controller
-  add_extensions :update_all
+  map.resources :projects, :collection => {:update_all => :put}, :controller => 'update_all_action_extensions_test/projects'
 end
 
 class UpdateAllActionExtensionsTest < ActionController::TestCase
+  class ProjectsController < ActionController::Base
+    resource_controller
+    add_extensions :update_all
+    
+    def update_all_action_extensions_test_projects_url
+      projects_url
+    end
+  end
   tests ProjectsController
   
   context "A controller with the :update_all extension added" do

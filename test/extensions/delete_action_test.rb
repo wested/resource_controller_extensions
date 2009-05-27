@@ -1,15 +1,14 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 ActionController::Routing::Routes.draw do |map|
-  map.resources :projects, :member => {:delete => :get}
-end
-
-class ProjectsController < ActionController::Base
-  resource_controller
-  add_extensions :delete
+  map.resources :projects, :member => {:delete => :get}, :controller => 'delete_action_extensions_test/projects'
 end
 
 class DeleteActionExtensionsTest < ActionController::TestCase
+  class ProjectsController < ActionController::Base
+    resource_controller
+    add_extensions :delete
+  end
   tests ProjectsController
   
   context "A controller with the :delete extension added" do

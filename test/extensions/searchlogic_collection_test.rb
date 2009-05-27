@@ -1,15 +1,15 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 ActionController::Routing::Routes.draw do |map|
-  map.resources :projects, :collection => {:search => :get}
-end
-
-class ProjectsController < ActionController::Base
-  resource_controller
-  add_extensions :searchlogic
+  map.resources :projects, :collection => {:search => :get}, :controller => 'searchlogic_collection_test/projects'
 end
 
 class SearchlogicCollectionTest < ActionController::TestCase
+  class ProjectsController < ActionController::Base
+    resource_controller
+    add_extensions :searchlogic
+  end
+
   tests ProjectsController
   setup do
     # don't look for views...
