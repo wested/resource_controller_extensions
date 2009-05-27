@@ -1,13 +1,13 @@
 module ResourceControllerExtensions
   module IndexPreload
-    class CollectionActionOptions < ResourceController::ActionOptions
-      reader_writer :preload
-    end
-    
+
     def self.included(subclass)
       subclass.class_eval do
-        class_scoping_reader :index, CollectionActionOptions.new
-        index.wants.html
+        index.instance_eval do
+          class << self
+            reader_writer :preload
+          end
+        end
         
         alias_method_chain :end_of_association_chain, :preloading
       end
