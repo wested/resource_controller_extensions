@@ -9,7 +9,7 @@ class ProjectsController < ActionController::Base
   add_extensions :improved_error_handling
 end
 
-class IndexPreloadTest < ActionController::TestCase
+class ImprovedErrorHandlingTest < ActionController::TestCase
   tests ProjectsController
   
   setup do

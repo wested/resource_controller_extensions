@@ -49,7 +49,7 @@ class ResourceControllerExtensionsTest < Test::Unit::TestCase
           ResourceControllerExtensions::ImprovedErrorHandling,
           ResourceControllerExtensions::IndexPreload,
           ResourceControllerExtensions::SearchlogicCollection,
-          ResourceControllerExtensions::SearchlogicCollection,
+          ResourceControllerExtensions::TransactionalUpdateAction,
           ResourceControllerExtensions::UpdateAllAction
         ].each do |mod|
           assert_includes @controller_class.included_modules, mod
