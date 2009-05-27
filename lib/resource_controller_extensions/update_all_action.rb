@@ -20,10 +20,14 @@ module ResourceControllerExtensions
       
       begin
         model.transaction do
+          @collection = []
           objects_params.each do |attributes|
             id = attributes.delete("id")
-            model.find(id).update_attributes!(attributes)
+            object = model.find(id)
+            @collection.push object
+            object.update_attributes!(attributes)
           end
+          instance_variable_set "@#{object_name.pluralize}", @collection
           after :update_all
         end
         set_flash :update_all

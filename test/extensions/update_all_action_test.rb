@@ -38,6 +38,8 @@ class UpdateAllActionExtensionsTest < ActionController::TestCase
       end
       
       should_set_the_flash_to "All successfully updated!"
+      should_assign_to :collection
+      should_assign_to :projects
     end
     
     context "failed update_all action" do
