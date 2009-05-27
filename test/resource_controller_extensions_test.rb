@@ -67,6 +67,18 @@ class ResourceControllerExtensionsTest < Test::Unit::TestCase
     
   end
   
+  context "a controller calling add_extension twice" do
+    should "include both extensions" do
+      UsersController.instance_eval do
+        add_extensions :delete
+        add_extensions :searchlogic
+      end
+      
+      assert_includes UsersController.included_modules, ResourceControllerExtensions::DeleteAction
+      assert_includes UsersController.included_modules, ResourceControllerExtensions::SearchlogicCollection
+    end
+  end
+  
   context "A controller that has not called resource_controller" do
     setup do
       @controller_class = HomeController
