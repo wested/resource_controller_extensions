@@ -14,7 +14,11 @@ root = File.join(File.dirname(__FILE__), '..')
 require File.join(root, 'test/models.rb')
 
 ActiveSupport::Dependencies.load_paths << File.join(root, '..', 'searchlogic', 'lib')
-Searchlogic
+begin
+  Searchlogic
+rescue NameError
+  require 'searchlogic'
+end
 
 ActiveSupport::Dependencies.load_paths << File.join(root, '..', 'resource_controller', 'lib')
 require File.join(root, '..', 'resource_controller', 'init.rb')
