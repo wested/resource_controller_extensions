@@ -13,12 +13,11 @@ require 'woulda'
 root = File.join(File.dirname(__FILE__), '..')
 require File.join(root, 'test/models.rb')
 
-# ActiveSupport::Dependencies.load_paths << File.join(RESOURCE_CONTROLLER_ROOT, 'lib', 'resource_controller')
+ActiveSupport::Dependencies.load_paths << File.join(root, '..', 'searchlogic', 'lib')
+Searchlogic
 
-["resource_controller", "searchlogic"].each do |plugin|
-  ActiveSupport::Dependencies.load_paths << File.join(root, '..', plugin, 'lib')
-  require File.join(root, '..', plugin, 'init.rb')
-end
+ActiveSupport::Dependencies.load_paths << File.join(root, '..', 'resource_controller', 'lib')
+require File.join(root, '..', 'resource_controller', 'init.rb')
 
 ActiveSupport::Dependencies.load_paths << File.join(root, 'lib')
 require File.join(root, 'init.rb')
