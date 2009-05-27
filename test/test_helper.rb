@@ -9,19 +9,19 @@ require 'shoulda'
 require 'shoulda/action_controller'
 require 'woulda'
 
-require 'models'
 
-ROOT                     = File.join(File.dirname(__FILE__), '..')
+root = File.join(File.dirname(__FILE__), '..')
+require File.join(root, 'test/models.rb')
 
 # ActiveSupport::Dependencies.load_paths << File.join(RESOURCE_CONTROLLER_ROOT, 'lib', 'resource_controller')
 
 ["resource_controller", "searchlogic"].each do |plugin|
-  ActiveSupport::Dependencies.load_paths << File.join(ROOT, '..', plugin, 'lib')
-  require File.join(ROOT, '..', plugin, 'init.rb')
+  ActiveSupport::Dependencies.load_paths << File.join(root, '..', plugin, 'lib')
+  require File.join(root, '..', plugin, 'init.rb')
 end
 
-ActiveSupport::Dependencies.load_paths << File.join(ROOT, 'lib')
-require File.join(ROOT, 'init.rb')
+ActiveSupport::Dependencies.load_paths << File.join(root, 'lib')
+require File.join(root, 'init.rb')
 
 def assert_includes(array, obj, message = nil)
   full_message = build_message(message, "expected <?> to include <?>", array, obj)
