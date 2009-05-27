@@ -50,4 +50,14 @@ class SearchlogicCollectionTest < ActionController::TestCase
       assert_not_nil assigns(:user_id)
     end
   end
+  
+  context "index action" do
+    setup do
+      @controller.stubs(:render)
+      get :index
+    end
+    should "assign a searchlogic object to @search" do
+      assert_kind_of(Searchlogic::Search::Base, assigns(:search))
+    end
+  end
 end

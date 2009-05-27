@@ -1,18 +1,16 @@
 module ResourceControllerExtensions
   module SearchlogicCollection
-    class CollectionActionOptions < ResourceController::ActionOptions
-      block_accessor :preload
-    end
-    
     def self.included(subclass)
       subclass.class_eval do
         class_scoping_reader :search, ResourceController::ActionOptions.new
-        class_scoping_reader :index, CollectionActionOptions.new
         
         search.wants.html do
           render
         end
         
+        index.before do
+          @search ||= search_object
+        end
       end
     end
     
